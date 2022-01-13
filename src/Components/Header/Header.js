@@ -17,12 +17,13 @@ const Header = ({ title }) => {
         },
         topRow: {
             display: 'flex',
+            paddingLeft: '600px',
             justifyContent: 'flex-end',
-            gap: '20px',
+            gap: '10px',
             alignItems: 'center',
             marginBottom: '20px',
             '*': {
-                marginRight: '5px',
+                // marginRight: '5px',
             },
         },
         middleRow: {
@@ -49,7 +50,9 @@ const Header = ({ title }) => {
         <Box sx={headerStyles.wrapper}>
             <Box sx={headerStyles.topRow}>
                 <Typography sx={headerStyles.link}>Go to docs</Typography>
+
                 <NotificationsBell iconColor="white" />
+
                 <Avatar alt="avatar" src={'https://bit.ly/3zXqOYv'} />
             </Box>
             {/*second row*/}

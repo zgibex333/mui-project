@@ -1,0 +1,25 @@
+import React from 'react'
+import SearchIcon from '@mui/icons-material/Search'
+
+import Input from '@mui/material/Input'
+import { Box } from '@mui/material'
+const SearchBar = ({ placeholder, onChange, searchBarWidth }) => {
+    return (
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <SearchIcon sx={{ marginRight: '10px' }} />
+            <Input
+                placeholder={placeholder}
+                onChange={onChange}
+                disableUnderline
+                sx={{
+                    // add props width
+                    width: '100%',
+                    color: 'rgba(0, 0, 0, 0.6)',
+                    fontSize: '1.1rem',
+                }}
+            />
+        </Box>
+    )
+}
+
+export default SearchBar
