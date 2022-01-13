@@ -1,30 +1,51 @@
-import { createTheme } from "@mui/material/styles";
+import { createTheme } from '@mui/material/styles'
 export const dashboardTheme = createTheme({
-  components: {
-    // Name of the component
-    MuiButton: {
-      styleOverrides: {
-        // Name of the slot
-        root: {
-          // Some CSS
-          fontSize: "0.875rem",
-          fontWeight: 600,
-          borderRadius: 8.5,
-          "&.MuiButton-contained": {
-            backgroundColor: "#009be5",
-            "&:hover": {
-              backgroundColor: "#006db3",
+    components: {
+        // Name of the component
+        MuiButton: {
+            styleOverrides: {
+                // Name of the slot
+                root: {
+                    // Some CSS
+                    fontSize: '0.875rem',
+                    fontWeight: 600,
+                    borderRadius: 8.5,
+                    '&.MuiButton-contained': {
+                        backgroundColor: '#009be5',
+                        '&:hover': {
+                            backgroundColor: '#006db3',
+                        },
+                    },
+                    '&.MuiButton-outlined': {
+                        color: '#fff',
+                        borderColor: '#fff',
+                        '&:hover': {
+                            backgroundColor: 'transparent',
+                        },
+                    },
+                },
             },
-          },
-          "&.MuiButton-outlined": {
-            color: "#fff",
-            borderColor: "#fff",
-            "&:hover": {
-              backgroundColor: "transparent",
-            },
-          },
         },
-      },
+        MuiSvgIcon: {
+            styleOverrides: {
+                root: {
+                    fontSize: '1.7rem',
+                },
+            },
+        },
     },
-  },
-});
+    palette: {
+        white: {
+            main: '#fff',
+        },
+    },
+    typography: {
+        h1: {
+            fontSize: '1.6rem',
+            fontWeight: 600,
+            color: '#fff',
+            letterSpacing: '0.5px',
+            textTransform: 'capitalize',
+        },
+    },
+})
