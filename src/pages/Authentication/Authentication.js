@@ -9,17 +9,36 @@ import CommonBtn from '../../Components/common/CommonBtn'
 import { cardHeaderStyles } from '../../Components/common/SearchBar/styles'
 import GridWrapper from '../../Components/common/GridWrapper/GridWrapper'
 import BasicModal from '../../Components/common/BasicModal/BasicModal'
+import NewUserModal from '../../Components/Modals/NewUserModal'
 
 const Authentication = () => {
     const [open, setOpen] = useState(false)
+    const [users, setUsers] = useState([])
+    const [searchResults, setSearchResults] = useState(users)
     const getSearchBar = () => {
+        const filterData = (value) => {
+            const lowercasedValue = value.toLowerCase().trim()
+            if (lowercasedValue === '') setUsers(searchResults)
+            else {
+                const filteredData = searchResults.filter((item) => {
+                    return Object.keys(item).some((key) =>
+                        item[key]
+                            .toString()
+                            .toLowerCase()
+                            .includes(lowercasedValue)
+                    )
+                })
+                setUsers(filteredData)
+            }
+        }
+
         const handleChange = (value) => {
-            console.log(value)
+            filterData(value)
         }
         const addUser = () => {
-            console.log(123)
             setOpen(true)
         }
+
         return (
             <Box sx={cardHeaderStyles.wrapper}>
                 <SearchBar
@@ -42,6 +61,10 @@ const Authentication = () => {
             </Box>
         )
     }
+    const addNewUser = (data) => {
+        users.push({ ...data })
+        setOpen(false)
+    }
     const getContent = () => {
         return (
             <Box
@@ -51,16 +74,30 @@ const Authentication = () => {
                     fontSize: '1.3rem',
                 }}
             >
-                <Typography align="center">
-                    No users for this project yet
-                </Typography>
+                {users.length ? (
+                    users.map((user) => (
+                        <Box>
+                            <Typography>{user.userId}</Typography>
+                            <Typography>{user.email}</Typography>
+                            <Typography>{user.phoneNumber}</Typography>
+                        </Box>
+                    ))
+                ) : (
+                    <Typography align="center">
+                        No users for this project yet
+                    </Typography>
+                )}
             </Box>
         )
     }
     return (
         <GridWrapper>
             <BasicCard header={getSearchBar()} content={getContent()} />
-            <BasicModal open={open} onClose={() => setOpen(false)} />
+            <NewUserModal
+                open={open}
+                onClose={() => setOpen(false)}
+                addNewUser={addNewUser}
+            />
         </GridWrapper>
     )
 }
